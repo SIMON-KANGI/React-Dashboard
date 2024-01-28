@@ -13,7 +13,7 @@ function Invoices() {
   
   return (
     <Box>
-    <Typography variant="h4">
+    <Typography class="text-slate-100">
       INVOICES
     </Typography>
     <Box

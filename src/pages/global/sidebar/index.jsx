@@ -2,7 +2,7 @@
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react"
-import { Box, Typography ,useTheme} from "@mui/material";
+import { Box, Typography} from "@mui/material";
 import {Link} from "react-router-dom"
 import CottageIcon from '@mui/icons-material/Cottage';
 import GroupIcon from '@mui/icons-material/Group';
@@ -15,20 +15,17 @@ import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined';
 import SsidChartOutlinedIcon from '@mui/icons-material/SsidChartOutlined';
 import TerrainOutlinedIcon from '@mui/icons-material/TerrainOutlined';
-import { tokens } from "../../../theme";
+
 const Item=({title,to,icon,selected,setSelected})=>{
-  let theme=useTheme()
-  let colors = tokens(theme.palette.mode);
-  
-return(
+  return(
   <Link to={to}>  
   <MenuItem
   active={selected===title}
   onClick={()=>setSelected(title)}
-  style={{color:colors.grey[100]}}
+  style={{color:"rgb(200,200,200)"}}
   icon={icon}
   >
-    <Typography color="black">{title}</Typography> 
+    <Typography class="bg-transparent" color="rgb(200,200,200)">{title}</Typography> 
     
   </MenuItem></Link>
    
@@ -43,8 +40,14 @@ function SideBar() {
   return (
     <div className="bg-sky-950">
       {/*sidebar*/} 
-      <Box class="bg-sky-950" >
-      <Sidebar collapsed={isCollapsed} class="bg-sky-950">
+      <Box
+      sx={{
+        "& .MuiBox-root":{
+backgroundColor:"rgb(28,43,73)"
+      }
+      }}
+      >
+      <Sidebar collapsed={isCollapsed} class="bg-sky-950 text-slate-200">
         <Menu iconShape="square">
         <MenuItem
         class="text-slate-600"
@@ -54,8 +57,8 @@ function SideBar() {
         >
         {!isCollapsed &&(
 <Box>
-<Typography>
-  Simon
+<Typography class="text-slate-200">
+  <MenuIcon/>
 </Typography>
 
 </Box>
@@ -86,7 +89,7 @@ icon={<CottageIcon/>}
 
 />
 <Typography
-variant="h6">
+class="text-lg text-slate-200">
   Data
 </Typography>
 <Item
@@ -112,7 +115,7 @@ icon={<ReceiptIcon/>}
 
 />
 <Typography
-variant="h6">
+class="text-slate-200 text-lg">
   Pages
 </Typography>
 <Item
@@ -135,9 +138,10 @@ to="/Faq"
 selected={selected}
 setSelected={setSelected}
 icon={<QuizOutlinedIcon/>}
+class="text-lg text-slate-200"
 />
 <Typography
-variant="h6"
+class="text-lg text-slate-200"
 >
  Charts
 </Typography>
